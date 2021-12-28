@@ -58,20 +58,19 @@ function getMostPopularBooks(books) {
 function getMostPopularAuthors(books, authors) {
   let counts = {};
   let result = [];
-  for (let author of authors) {
-    for (let book of books) {
+  authors.forEach((author) => {
+    books.forEach((book) => {
       if (author.id === book.authorId) {
-        let current = counts[`${author.name.first} ${author.name.last}`];
+        let name = `${author.name.first} ${author.name.last}`;
+        let current = counts[name];
         if (current) {
-          counts[`${author.name.first} ${author.name.last}`] =
-            current + book.borrows.length;
+          counts[name] = current + book.borrows.length;
         } else {
-          counts[`${author.name.first} ${author.name.last}`] =
-            book.borrows.length;
+          counts[name] = book.borrows.length;
         }
       }
-    }
-  }
+    });
+  });
   for (let item in counts) {
     result.push({ name: item, count: counts[item] });
     _helper(result);

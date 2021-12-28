@@ -21,7 +21,9 @@ function getTotalNumberOfBorrows(account, books) {
   }, 0);
 }
 
-/*
+/* 
+Other Solution:
+
 function getTotalNumberOfBorrows(account, books) {
   books.forEach((book) =>
     book.borrows.forEach((borrow) => account.id === borrow.id && totalBorrows++)
