@@ -26,7 +26,7 @@ function getBooksBorrowedCount(books) {
 */
 
 //helper function
-let helper = function (element) {
+let _helper = function (element) {
   element.sort((obj1, obj2) => (obj1.count > obj2.count ? -1 : 1));
 };
 
@@ -41,7 +41,7 @@ function getMostCommonGenres(books) {
       //else push in the whole new object
       result.push({ name: book.genre, count: 1 });
     }
-    helper(result);
+    _helper(result);
   });
   return result.slice(0, 5);
 }
@@ -51,7 +51,7 @@ function getMostPopularBooks(books) {
     name: book.title,
     count: book.borrows.length,
   }));
-  helper(borrowed);
+  _helper(borrowed);
   return borrowed.slice(0, 5);
 }
 
@@ -74,7 +74,7 @@ function getMostPopularAuthors(books, authors) {
   }
   for (let item in counts) {
     result.push({ name: item, count: counts[item] });
-    helper(result);
+    _helper(result);
   }
   return result.slice(0, 5);
 }
