@@ -7,13 +7,11 @@ function getTotalAccountsCount(accounts) {
 }
 
 function getBooksBorrowedCount(books) {
-  let reducer = (previousValue, currentBook) => {
+  return books.reduce((previousValue, currentBook) => {
     let { borrows } = currentBook;
     if (borrows[0].returned === false) previousValue++;
     return previousValue;
-  };
-  let borrowedBooks = books.reduce(reducer, 0);
-  return borrowedBooks;
+  }, 0);
 }
 
 /*
